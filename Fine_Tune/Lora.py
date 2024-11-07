@@ -10,15 +10,6 @@ import torch.nn.functional as F
     
 class Lora(nn.Module):
     def __init__(self, in_features, out_features, lora_alpha, lora_dropout):
-        """
-        Initialize Lora module.
-
-        Args:
-            in_features (int): Number of input features.
-            out_features (int): Number of output features.
-            lora_alpha (int): Lora hyperparameter that controls the learning rate.
-            lora_dropout (float): Dropout rate for Lora module.
-        """
         super().__init__()
         self.in_features = in_features
         self.out_features = out_features
