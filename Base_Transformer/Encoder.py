@@ -12,11 +12,11 @@ class EncoderLayer(nn.Module):
     def __init__(self,d_model,ffn_hidden,n_head,drop_prob):
         super(EncoderLayer,self).__init__()
         self.attention=MultiheadAttention(d_model,n_head)
-        self.norm1=self.LayerNorm(d_model)
+        self.norm1=LayerNorm(d_model)
         self.drop1=nn.Dropout(drop_prob)
         
         self.ffn=PositinalWiseFeedForward(d_model,ffn_hidden,drop_prob)
-        self.norm2=self.LayerNorm(d_model)
+        self.norm2=LayerNorm(d_model)
         self.drop2=nn.Dropout(drop_prob)
         
     def forward(self,x,Mask=None):
@@ -48,7 +48,7 @@ class Encoder(nn.Module):
     ):
         super(Encoder, self).__init__()
         
-        self.embedding=self.TransformerEmbedding(
+        self.embedding=TransformerEmbedding(
             env_voc_size,d_model,max_len,drop_prob,device
         )
         
