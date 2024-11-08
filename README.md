@@ -4,7 +4,7 @@ This repo contains all the code that should be keep in mind during my undergradu
 
 # Code_Blog
 
-luogu https://www.luogu.com.cn/user/1285273  
+luogu [https://www.luogu.com.cn/user/1285273](https://www.luogu.com.cn/user/1285273)  
 
 lanqiao https://www.lanqiao.cn/users/2614932/  
 
