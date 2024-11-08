@@ -1,6 +1,18 @@
 import torch
 import torch.nn as nn
 
+def batch_norm(x,eps=1e-5):
+    alpha=nn.Parameter(torch.ones(x.shape[1]))
+    beta=nn.Parameter(torch.zeros(x.shape[1]))
+    mean=torch.mean(x,dim=(0,2,3),keepdim=True)
+    var=torch.var(x,dim=(0,2,3),keepdim=True,unbiased=False)
+    output=(x-mean)/torch.sqrt(var+eps)
+    output=output*alpha.view(1,-1,1,1)+beta.view(1,-1,1,1)
+    
+    return output
+
+
+
 class BatchNorm(nn.Module):
     def __init__(self,num_features,eps=1-5,momentum=0.1):
         super(BatchNorm, self).__init__()
