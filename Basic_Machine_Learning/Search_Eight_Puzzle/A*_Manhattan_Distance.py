@@ -3,7 +3,6 @@ import heapq
 DIRECTIONS = [(-1, 0), (1, 0), (0, -1), (0, 1)]  # 上下左右
 DIR_STRINGS = ['U', 'D', 'L', 'R']
 
-# 目标状态
 GOAL_STATE = [1, 2, 3, 8, 0, 4, 7, 6, 5]
 
 def is_goal(state):
@@ -26,14 +25,13 @@ def print_board(board):
 def a_star(start):
     start_pos = start.index(0)
     
-    # 用优先队列进行启发式搜索
     pq = []
     heapq.heappush(pq, (manhattan_distance(start), 0, start, start_pos, ""))  # f(n), g(n), state, empty_pos, path
     visited = set()
     visited.add(tuple(start))
 
     while pq:
-        f, g, board, zero_pos, path = heapq.heappop(pq)  # 弹出最小的f(n)值的状态
+        f, g, board, zero_pos, path = heapq.heappop(pq)  
 
         if is_goal(board):
             print("Solution found!")
@@ -52,12 +50,12 @@ def a_star(start):
 
                 if tuple(new_board) not in visited:
                     visited.add(tuple(new_board))
-                    new_g = g + 1  # 当前的路径长度加 1
-                    new_h = manhattan_distance(new_board)  # 计算新的启发式估计值
+                    new_g = g + 1  
+                    new_h = manhattan_distance(new_board)  
                     heapq.heappush(pq, (new_g + new_h, new_g, new_board, new_zero_pos, path + DIR_STRINGS[i]))
 
     print("No solution found.")
 
 if __name__ == "__main__":
-    start = [2, 0, 3, 1, 8, 4, 7, 6, 5]  # 输入的初始状态
+    start = [2, 0, 3, 1, 8, 4, 7, 6, 5] 
     a_star(start)
